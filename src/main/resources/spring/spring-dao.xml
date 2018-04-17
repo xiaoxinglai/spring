@@ -42,6 +42,6 @@
         <!-- 注入sqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
         <!-- 给出需要扫描Dao接口包 -->
-        <property name="basePackage" value="sell.dao" />
+        <property name="basePackage" value="sell.dao.DO" />
     </bean>
 </beans>

@@ -1,10 +1,13 @@
 package sell.dao.DO;
 
+import org.apache.ibatis.annotations.Param;
 import sell.pojo.User;
 
 import java.util.List;
 
 public interface UserMapper {
+
+    User selectbyNameAndidentity(@Param("Uname") String Uname, @Param("Uidentity") String Uidentity);
 
     User selectByNo(String uNo);
     /**

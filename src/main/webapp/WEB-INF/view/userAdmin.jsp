@@ -1,12 +1,13 @@
 <%@ page import="sell.dao.VO.FightOrderVO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="sell.dao.VO.detatilVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>个人中心</title>
 
     <!-- Bootstrap core CSS -->
   <%@include file="layout/header.jsp"%>
@@ -27,16 +28,6 @@
                     <tr>
                         <th>订单号</th>
                         <th>航班号</th>
-                        <th>起始地</th>
-                        <th>起飞时间</th>
-                        <th>目的地</th>
-                        <th>到达时间</th>
-                        <th>航空公司</th>
-                        <th>航班类型</th>
-                        <th>票价</th>
-                        <th>乘机人</th>
-                        <th>退票</th>
-                        <th>改签</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -53,16 +44,44 @@
                         <tr>
                         <td><%=fightOrderVO.getOrderNo()%></td>
                         <td><%=fightOrderVO.getFightNo()%></td>
-                        <td><%=fightOrderVO.getDeparture()%></td>
-                        <td><%=fightOrderVO.getDepartureTime()%></td>
-                        <td><%=fightOrderVO.getDestination()%></td>
-                        <td><%=fightOrderVO.getDestinationTime()%></td>
-                        <td><%=fightOrderVO.getFightCompany()%></td>
-                        <td><%=fightOrderVO.getFightType()%></td>
-                        <td><%=fightOrderVO.getFightPay()%></td>
-                        <td><%=fightOrderVO.getUserName()%></td>
-                        <td><a href="xxxx?fightId=<%=fightOrderVO.getFightId()%>">退票</a></td>
-                        <td><a href="xxxx?fightId=<%=fightOrderVO.getFightId()%>">改签</a></td>
+                        </tr>
+                        <tr>
+                            <th>起始地</th>
+                            <th>起飞时间</th>
+                            <th>目的地</th>
+                            <th>到达时间</th>
+                            <th>航空公司</th>
+                            <th>航班类型</th>
+                            <th>票价</th>
+                            <th>乘机人</th>
+                            <th>退票</th>
+                            <th>改签</th>
+                        </tr>
+
+                        <%
+                            for(detatilVO detatilVO:fightOrderVO.getDetatilVOS()){
+
+                                %>
+                        <tr>
+                        <td><%=detatilVO.getDeparture()%></td>
+                        <td><%=detatilVO.getDepartureTime()%></td>
+                        <td><%=detatilVO.getDestination()%></td>
+                        <td><%=detatilVO.getDestinationTime()%></td>
+                        <td><%=detatilVO.getFightCompany()%></td>
+                        <td><%=detatilVO.getFightType()%></td>
+                        <td><%=detatilVO.getFightPay()%></td>
+                        <td><%=detatilVO.getUserName()%></td>
+                        <td><a href="/refund?detailId=<%=detatilVO.getDetatilId()%>">退票</a></td>
+                        <td><a href="/toChangeTicket?detailId=<%=detatilVO.getDetatilId()%>">改签</a></td>
+                    </tr>
+<%
+
+                        }
+
+                        %>
+
+
+
                     </tr>
                         <%
 

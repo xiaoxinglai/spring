@@ -8,27 +8,19 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             <li class="active">
-                <a href="#">个人中心</a>
+                <a href="/user/center ">个人中心</a>
             </li>
 
             <li>
-                <a href="#">航班查询</a>
+                <a href="/QueryOrder">航班查询</a>
             </li>
 
-            <li>
-                <a href="#">退改/签</a>
-            </li>
 
 
         </ul>
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" />
-            </div> <button type="submit" class="btn btn-default">搜索</button>
-        </form>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="#">管理员登陆</a>
+                <a href="/login">管理员登陆</a>
             </li>
 
         </ul>

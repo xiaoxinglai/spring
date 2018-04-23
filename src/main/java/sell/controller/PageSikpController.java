@@ -17,6 +17,12 @@ public class PageSikpController {
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * 进入首页
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(HttpSession session, Model model){
        User user=(User) session.getAttribute("User");
@@ -27,22 +33,35 @@ public class PageSikpController {
         return "index";
     }
 
+    /**
+     * 进入登陆页面
+     * @return
+     */
     @RequestMapping(value = "/login ",method = RequestMethod.GET)
     public String login(){
         return "login";
     }
 
+    /**
+     * 进入后台管理页面
+     * @return
+     */
     @RequestMapping(value = "/admin ",method = RequestMethod.GET)
     public String admin(){
         return "admin";
     }
 
 
-
+    /**
+     * 进入注册页面
+     * @return
+     */
     @RequestMapping(value = "/sign ",method = RequestMethod.GET)
     public String sign(){
         return "sign";
     }
+
+
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
 

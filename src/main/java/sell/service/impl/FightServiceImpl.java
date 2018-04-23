@@ -26,6 +26,11 @@ public class FightServiceImpl implements IFightService {
     @Autowired
     private CompanyInfoMapper companyInfoMapper;
 
+    /**
+     * 获取首页航班信息 带分页
+     * @param currentPage
+     * @return
+     */
     @Transactional(rollbackFor = Exception.class)
     @Override
     public PageResult<FightInfoVO> selectFightInfoListByPage(Integer currentPage) {

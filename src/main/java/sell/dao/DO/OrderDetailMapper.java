@@ -36,6 +36,7 @@ public interface OrderDetailMapper {
      * @mbggenerated
      */
     List<OrderDetail> selectAll();
+    List<OrderDetail> selectByOrderId(Long orderId);
 
     List<OrderDetail> selectAllByIDs(List<Long> orderIds);
 

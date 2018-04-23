@@ -15,7 +15,7 @@ public interface FightInfoMapper {
     int selectCount();
     List<FightInfo>  selectListByPage(@Param("currentPage")  Integer currentPage, @Param("pageSize") Integer pageSize);
 
-
+    List<FightInfo> queryFightInfo(@Param("Departure") String Departure,@Param("Destination") String Destination,@Param("CompanyId")  Long CompanyId);
     int deleteByPrimaryKey(Long fightId);
 
     /**

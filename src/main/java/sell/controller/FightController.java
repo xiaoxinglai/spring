@@ -17,6 +17,12 @@ public class FightController {
     @Autowired
     private IFightService fightService;
 
+
+    /**
+     *获取航班信息 带分页
+     * @param currPage
+     * @return
+     */
     @RequestMapping(value = "/ajaxList",method = RequestMethod.GET)
     @ResponseBody
     public Object ajaxlist(@RequestParam(value = "currPage", required=false) Integer currPage) {
@@ -31,12 +37,6 @@ public class FightController {
 
     }
 
-    @RequestMapping(value = "/order",method = RequestMethod.GET)
-    public Object oder() {
-
-        return "Order";
-
-    }
 
 
 }

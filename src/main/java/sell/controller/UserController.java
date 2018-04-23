@@ -87,12 +87,13 @@ public class UserController {
             session.setAttribute("User", bizResult.getDate());
             User resultDate = bizResult.getDate();
             if (resultDate.getPower().equals(UserEnum.ADMIN.getCode())) {
-                model.addAttribute("admin",user);
-                return "redirect:/admin";
+                model.addAttribute("admin",resultDate);
+                return "admin";
             } else if (resultDate.getPower().equals(UserEnum.USER.getCode())) {
                 return "redirect:/index";
             } else {
-                return "redirect:/admin";
+                model.addAttribute("admin",resultDate);
+                return "admin";
             }
 
         } else {

@@ -129,6 +129,12 @@
             <version>0.9.1.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-core-container-tomcat</artifactId>
+            <version>1.6.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -148,6 +154,7 @@
     </resources>
 
         <plugins>
+
             <!--<plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -196,7 +203,13 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+
+
         </plugins>
+
+
+
 </build>
 
 </project>

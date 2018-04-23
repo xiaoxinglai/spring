@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="sell.dao.VO.detatilVO" %>
 <%@ page import="sell.pojo.Message" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -25,33 +26,45 @@
             <h2 class="sub-header">我的留言列表</h2>
             <div class="table-responsive">
                 <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>标题</th>
-                        <th>提问时间</th>
-                        <th>提问内容</th>
-                        <th>回复时间</th>
-                        <th>回复内容</th>
-                        <th>删除</th>
-                    </tr>
-                    </thead>
                     <tbody>
                     <%
+                        SimpleDateFormat format = new SimpleDateFormat("YYYYMMDD:hh:mm:ss");
                         List<Message> messages = (List<Message>) request.getAttribute("messageList");
                         if (messages != null && messages.size() != 0) {
                             for (Message message : messages) {
-                    %>
-                    <td><%=message.getmTitle()%></td>
-                    <td><%=message.getqTime()%></td>
-                    <td><%=message.getmQuestion()%></td>
-                    <td><%=message.getaTime()%></td>
-                    <td><%=message.getmAnswer()%></td>
-                    <td><a href="/xx?<%=message.getmId()%>"></a></td>
 
+
+                                String aTime;
+                                String answer;
+                                String aName;
+                                if (message.getaTime() != null) {
+                                    aTime = format.format(message.getaTime());
+                                    answer = message.getmAnswer();
+                                    aName=message.getaUserName();
+                                } else {
+                                    answer = "未回复";
+                                    aTime = "未回复";
+                                    aName="未回复";
+                                }
+
+
+                    %>
+                    <tr>
+
+                        <p>标题:<%=message.getmTitle()%> &nbsp;发布时间：<%=format.format(message.getqTime())%><a href="/delMessage?mId=<%=message.getmId()%>">删除</a></p>
+
+                        提问内容：<p><%=message.getmQuestion()%></p>
+                       回复内容：<p><%=answer%></p>
+                        <p>回复人：<%=aName%>&nbsp;回复时间：<%=aTime%></p>
+
+                        <hr/>
+                        <br/>
+                        <br/>
+                    </tr>
 
 
                     <% }
-                        }%>
+                    }%>
 
                     </tbody>
                 </table>

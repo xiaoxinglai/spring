@@ -32,7 +32,7 @@
                        在这里您可以查询航班，预定机票，退/改签等等，祝您旅途愉快！
                     </p>
                     <p>
-                        <a class="btn btn-primary btn-large" href="#">开始订票</a>
+                        <a class="btn btn-primary btn-large" href="/QueryOrder">航班查询</a>
                     </p>
                 </div>
             </div>

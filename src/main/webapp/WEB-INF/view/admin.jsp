@@ -1,11 +1,13 @@
-
+<%@ page import="sell.dao.VO.FightOrderVO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="sell.dao.VO.detatilVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>个人中心</title>
 
     <!-- Bootstrap core CSS -->
   <%@include file="layout/header.jsp"%>
@@ -15,179 +17,87 @@
 <body>
 <%@include file="layout/admin_nav.jsp"%>
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Analytics</a></li>
-                <li><a href="#">Export</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="">Nav item</a></li>
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
-                <li><a href="">More navigation</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
-            </ul>
-        </div>
+        <%@include file="layout/left_nav.jsp"%>
         <div class="col-md-10 main">
-            <h2 class="sub-header">Section title</h2>
+            <h2 class="sub-header">我的订单列表</h2>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
+                        <th>订单号</th>
+                        <th>航班号</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
+
+                        <%
+
+                       List<FightOrderVO> fightOrderVOS= ( List<FightOrderVO>)request.getAttribute("fightOrderVO");
+
+                       if (fightOrderVOS!=null&&fightOrderVOS.size()!=0){
+
+                           for (FightOrderVO fightOrderVO : fightOrderVOS) {
+
+                               %>
+                        <tr>
+                        <td><%=fightOrderVO.getOrderNo()%></td>
+                        <td><%=fightOrderVO.getFightNo()%></td>
+                        </tr>
+                        <tr>
+                            <th>起始地</th>
+                            <th>起飞时间</th>
+                            <th>目的地</th>
+                            <th>到达时间</th>
+                            <th>航空公司</th>
+                            <th>航班类型</th>
+                            <th>票价</th>
+                            <th>乘机人</th>
+                            <th>退票</th>
+                            <th>改签</th>
+                        </tr>
+
+                        <%
+                            for(detatilVO detatilVO:fightOrderVO.getDetatilVOS()){
+
+                                %>
+                        <tr>
+                        <td><%=detatilVO.getDeparture()%></td>
+                        <td><%=detatilVO.getDepartureTime()%></td>
+                        <td><%=detatilVO.getDestination()%></td>
+                        <td><%=detatilVO.getDestinationTime()%></td>
+                        <td><%=detatilVO.getFightCompany()%></td>
+                        <td><%=detatilVO.getFightType()%></td>
+                        <td><%=detatilVO.getFightPay()%></td>
+                        <td><%=detatilVO.getUserName()%></td>
+                        <td><a href="/refund?detailId=<%=detatilVO.getDetatilId()%>">退票</a></td>
+                        <td><a href="/toChangeTicket?detailId=<%=detatilVO.getDetatilId()%>">改签</a></td>
                     </tr>
-                    <tr>
-                        <td>1,002</td>
-                        <td>amet</td>
-                        <td>consectetur</td>
-                        <td>adipiscing</td>
-                        <td>elit</td>
+<%
+
+                        }
+
+                        %>
+
+
+
                     </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>Integer</td>
-                        <td>nec</td>
-                        <td>odio</td>
-                        <td>Praesent</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>libero</td>
-                        <td>Sed</td>
-                        <td>cursus</td>
-                        <td>ante</td>
-                    </tr>
-                    <tr>
-                        <td>1,004</td>
-                        <td>dapibus</td>
-                        <td>diam</td>
-                        <td>Sed</td>
-                        <td>nisi</td>
-                    </tr>
-                    <tr>
-                        <td>1,005</td>
-                        <td>Nulla</td>
-                        <td>quis</td>
-                        <td>sem</td>
-                        <td>at</td>
-                    </tr>
-                    <tr>
-                        <td>1,006</td>
-                        <td>nibh</td>
-                        <td>elementum</td>
-                        <td>imperdiet</td>
-                        <td>Duis</td>
-                    </tr>
-                    <tr>
-                        <td>1,007</td>
-                        <td>sagittis</td>
-                        <td>ipsum</td>
-                        <td>Praesent</td>
-                        <td>mauris</td>
-                    </tr>
-                    <tr>
-                        <td>1,008</td>
-                        <td>Fusce</td>
-                        <td>nec</td>
-                        <td>tellus</td>
-                        <td>sed</td>
-                    </tr>
-                    <tr>
-                        <td>1,009</td>
-                        <td>augue</td>
-                        <td>semper</td>
-                        <td>porta</td>
-                        <td>Mauris</td>
-                    </tr>
-                    <tr>
-                        <td>1,010</td>
-                        <td>massa</td>
-                        <td>Vestibulum</td>
-                        <td>lacinia</td>
-                        <td>arcu</td>
-                    </tr>
-                    <tr>
-                        <td>1,011</td>
-                        <td>eget</td>
-                        <td>nulla</td>
-                        <td>Class</td>
-                        <td>aptent</td>
-                    </tr>
-                    <tr>
-                        <td>1,012</td>
-                        <td>taciti</td>
-                        <td>sociosqu</td>
-                        <td>ad</td>
-                        <td>litora</td>
-                    </tr>
-                    <tr>
-                        <td>1,013</td>
-                        <td>torquent</td>
-                        <td>per</td>
-                        <td>conubia</td>
-                        <td>nostra</td>
-                    </tr>
-                    <tr>
-                        <td>1,014</td>
-                        <td>per</td>
-                        <td>inceptos</td>
-                        <td>himenaeos</td>
-                        <td>Curabitur</td>
-                    </tr>
-                    <tr>
-                        <td>1,015</td>
-                        <td>sodales</td>
-                        <td>ligula</td>
-                        <td>in</td>
-                        <td>libero</td>
-                    </tr>
+                        <%
+
+                           }
+
+
+
+                       }
+
+                        %>
+
+
+
                     </tbody>
                 </table>
-                <ul class="pagination">
-                    <li>
-                        <a href="#">Prev</a>
-                    </li>
-                    <li>
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">Next</a>
-                    </li>
-                </ul>
+
             </div>
         </div>
     </div>

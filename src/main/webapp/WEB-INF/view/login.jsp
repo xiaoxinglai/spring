@@ -10,39 +10,31 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Signin Template for Bootstrap</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <title>登陆</title>
 
+    <%@ include file="layout/header.jsp"%>
 
 </head>
 
 <body>
 
 <div class="container">
+    <%@ include  file="layout/nav.jsp"%>
 <div class="row">
     <div class="col-lg-4 col-lg-offset-4">
-    <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+        <form class="form-signin" method="post" action="/user/doLogin">
+            <h6 class="form-signin-heading">Please sign in</h6>
+            <label for="no" class="sr-only">账号</label>
+            <input  id="no" name="uNo" class="form-control" placeholder="请输入账号" required autofocus>
+            &nbsp;
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password"  name="password" id="inputPassword" class="form-control" placeholder="Password">
+            &nbsp;
+            <button class="btn btn-sm btn-primary btn-block" type="submit">登陆</button>&nbsp;
+            <a class="btn btn-sm btn-primary btn-block" href="/sign">注册</a>
+        </form>
     </div>
 </div> <!-- /container -->
 

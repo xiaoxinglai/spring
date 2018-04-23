@@ -77,7 +77,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
-    public String doLogin(UserForm userForm, HttpSession session) {
+    public String doLogin(UserForm userForm, HttpSession session,Model model) {
 
         User user = new User();
         user.setuNo(userForm.getuNo());
@@ -87,7 +87,7 @@ public class UserController {
             session.setAttribute("User", bizResult.getDate());
             User resultDate = bizResult.getDate();
             if (resultDate.getPower().equals(UserEnum.ADMIN.getCode())) {
-
+                model.addAttribute("admin",user);
                 return "redirect:/admin";
             } else if (resultDate.getPower().equals(UserEnum.USER.getCode())) {
                 return "redirect:/index";

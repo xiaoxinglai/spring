@@ -43,14 +43,13 @@ public class PageSikpController {
     }
 
     /**
-     * 进入后台管理页面
+     * 管理员管理界面
      * @return
      */
     @RequestMapping(value = "/admin ",method = RequestMethod.GET)
     public String admin(){
         return "admin";
     }
-
 
     /**
      * 进入注册页面

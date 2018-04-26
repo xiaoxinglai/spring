@@ -28,10 +28,8 @@
     <selectKey keyProperty="companyId" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into company_info (company_name, `status`, creat_time, 
-      modfy_time)
-    values (#{companyName,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{creatTime,jdbcType=TIMESTAMP}, 
-      #{modfyTime,jdbcType=TIMESTAMP})
+    insert into company_info (company_name)
+    values (#{companyName,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="sell.pojo.CompanyInfo">
     <!--

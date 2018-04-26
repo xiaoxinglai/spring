@@ -9,8 +9,6 @@ public interface IMessageService {
      * 发布留言
      */
     BizResult insertMessage(String title,String question,User user);
-    /**
-     * 查询指定用户的所有留言
-     */
+
 
 }

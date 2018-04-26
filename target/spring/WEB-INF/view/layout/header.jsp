@@ -5,6 +5,3 @@
 
 <!-- Bootstrap core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet">
-<%
-    String path = request.getContextPath();
-%>

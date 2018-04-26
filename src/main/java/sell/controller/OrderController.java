@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import sell.dao.Enum.UserEnum;
 import sell.dao.Form.orderForm;
 import sell.dao.VO.FightInfoVO;
+import sell.dao.VO.FightOrderVO;
 import sell.dao.VO.OrderQueryVO;
 import sell.dao.VO.OrderVO;
 import sell.dao.result.BizResult;
@@ -65,7 +67,13 @@ public class OrderController {
         } else {
             BizResult bizResult = orderService.OrderTicket(orderForm, user.getuId());
             if (bizResult.getSuccess()) {
+
+                if (user.getPower().equals(UserEnum.ADMIN.getCode())){
+                    return "redirect:/user/adminOrder";
+                }
                 return "redirect:/user/center";
+
+
             } else {
                 model.addAttribute("msg", bizResult.getMsg());
                 return "result";
@@ -92,6 +100,10 @@ public class OrderController {
         }
         BizResult bizResult = orderService.refundTickt(detailId);
         if (bizResult.getSuccess()) {
+            if (user.getPower().equals(UserEnum.ADMIN.getCode())){
+                return "redirect:/user/adminOrder";
+            }
+
             return "redirect:/user/center"; //表示成功
         } else {
             model.addAttribute("msg", bizResult.getMsg());
@@ -168,12 +180,66 @@ public class OrderController {
         }
         BizResult bizResult=orderService.dochangeOrder(fightId,detailId,user.getuId());
         if (bizResult.getSuccess()){
+            if (user.getPower().equals(UserEnum.ADMIN.getCode())){
+                return "redirect:/user/adminOrder";
+            }
             return "redirect:/user/center"; //表示成功
         }else{
 
             model.addAttribute("msg",bizResult.getMsg());
             return "result";
         }
+
+    }
+
+
+    /**
+     * 进入根据单号查询订单页面
+     */
+    @RequestMapping(value = "/OrderSerch ", method = RequestMethod.GET)
+    public String OrderSerch(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("User");
+        if (user != null&&user.getPower().equals(UserEnum.ADMIN.getCode())) {
+
+            model.addAttribute("admin",user);
+
+            return "OrderSerch";
+        }
+
+        return "redirect:/login";
+
+
+    }
+
+
+    /**
+     *
+     *根据订单号查询航班
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/adminOrder ", method = RequestMethod.POST)
+    public String adminOrder(@RequestParam("orderNo") String orderNo,HttpSession session, Model model) {
+        User user = (User) session.getAttribute("User");
+        if (user != null&&user.getPower().equals(UserEnum.ADMIN.getCode())) {
+            List<FightOrderVO> fightOrderVOs = orderService.getFightOrder(orderNo);
+
+            if (fightOrderVOs!=null&&fightOrderVOs.size()!=0){
+                for (FightOrderVO fightOrderVO : fightOrderVOs) {
+
+                   if (fightOrderVO.getOrderNo().equals(orderNo)){
+                       model.addAttribute("fightOrderVO", fightOrderVO);
+                   }
+                }
+            }
+
+            model.addAttribute("admin",user);
+            return "OrderSerch";
+        }
+
+        return "redirect:/login";
+
 
     }
 

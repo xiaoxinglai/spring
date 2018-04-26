@@ -21,7 +21,13 @@
     <div class="row">
         <%@include file="layout/left_nav.jsp"%>
         <div class="col-md-10 main">
-            <h2 class="sub-header">所有的顾客订单列表</h2>
+
+            <form method="post" action="/adminOrder">
+                请输入订单号： <input name="orderNo" type="text"/> <button type="submit">查询</button>
+            </form>
+
+
+            <h2 class="sub-header">查询结果</h2>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -34,11 +40,9 @@
 
                         <%
 
-                       List<FightOrderVO> fightOrderVOS= ( List<FightOrderVO>)request.getAttribute("fightOrderVO");
+                      FightOrderVO fightOrderVO= (FightOrderVO)request.getAttribute("fightOrderVO");
 
-                       if (fightOrderVOS!=null&&fightOrderVOS.size()!=0){
-
-                           for (FightOrderVO fightOrderVO : fightOrderVOS) {
+                       if (fightOrderVO!=null){
 
                                %>
                         <tr>
@@ -84,9 +88,6 @@
 
                     </tr>
                         <%
-
-                           }
-
 
 
                        }

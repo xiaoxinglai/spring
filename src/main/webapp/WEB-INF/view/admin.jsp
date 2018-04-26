@@ -21,7 +21,7 @@
     <div class="row">
         <%@include file="layout/left_nav.jsp"%>
         <div class="col-md-10 main">
-            <h2 class="sub-header">我的订单列表</h2>
+            <h2 class="sub-header">所有的顾客订单列表</h2>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>

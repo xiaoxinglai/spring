@@ -13,6 +13,7 @@ import sell.pojo.User;
 import sell.service.IMessageService;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -67,6 +68,22 @@ public class MessageController {
     }
 
     /**
+     * 进入管理员留言查看列表
+     */
+    @RequestMapping(value = "/toAdminMessageList",method = RequestMethod.GET)
+    public String toAdminMessageList(HttpSession session, Model model){
+        User user = (User) session.getAttribute("User");
+        if (user == null) {
+            return "redirect:login";
+        }
+
+        List<Message> messageList= messageMapper.selectAll();
+        model.addAttribute("messageList",messageList);
+        model.addAttribute("admin",user);
+        return "AdminMessage";
+    }
+
+    /**
      * 删除留言
      */
     @RequestMapping(value = "/delMessage",method = RequestMethod.GET)
@@ -76,4 +93,51 @@ public class MessageController {
     }
 
 
+
+    /**
+     * 管理员删除留言
+     */
+    @RequestMapping(value = "/AdmindelMessage",method = RequestMethod.GET)
+    public String AdmindelMessage(@RequestParam("mId") Long mId){
+        messageMapper.deleteByPrimaryKey(mId);
+        return "redirect:toAdminMessageList";
+    }
+
+    /**
+     * 进入留言回复列表
+     */
+    @RequestMapping(value = "/toUpdateMessage",method = RequestMethod.GET)
+    public String toUpdateMessage(@RequestParam("mId") Long mId,Model model){
+        Message message=messageMapper.selectByPrimaryKey(mId);
+        model.addAttribute("message",message);
+
+        return "UpdateMessage";
+    }
+
+
+
+    /**
+     *  留言回复
+     */
+
+    @RequestMapping(value = "/DoUpdateMessage",method = RequestMethod.POST)
+    public String DoUpdateMessage(HttpSession session,String mAnswer,Long mId,Model model){
+        User user=(User)session.getAttribute("User");
+        if (user==null){
+            return "redirect:/login";
+        }
+
+        Message message=messageMapper.selectByPrimaryKey(mId);
+        message.setmAnswer(mAnswer);
+        message.setaTime(new Date());
+        message.setaUserId(user.getuId());
+        message.setaUserName(user.getUserName());
+
+        messageMapper.updateByPrimaryKey(message);
+
+
+       model.addAttribute("msg","回复成功！");
+
+        return "result";
+    }
 }

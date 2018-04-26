@@ -15,6 +15,8 @@ public interface IOrderService {
      BizResult OrderTicket(orderForm orderForm, Long uid);
      OrderVO getOrderVO(Long fightId,User user);
      List<FightOrderVO> getFightOrder(User user);
+     List<FightOrderVO> getFightOrder();
+     List<FightOrderVO> getFightOrder(String orderNo);
      BizResult refundTickt(Long detailId);
      OrderQueryVO queryOrder();
      List<FightInfoVO> queryFightInfo(String Departure, String Destination, Long CompanyId);

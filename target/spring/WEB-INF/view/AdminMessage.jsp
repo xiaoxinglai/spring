@@ -23,7 +23,7 @@
     <div class="row">
         <%@include file="layout/left_nav.jsp" %>
         <div class="col-md-10 main">
-            <h2 class="sub-header">我的留言列表</h2>
+            <h2 class="sub-header">顾客的留言列表</h2>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <tbody>
@@ -32,12 +32,17 @@
                         List<Message> messages = (List<Message>) request.getAttribute("messageList");
                         if (messages != null && messages.size() != 0) {
                             for (Message message : messages) {
+
+
                     %>
                     <tr>
 
-                        <p>标题:<%=message.getmTitle()%> &nbsp;发布时间：<%=format.format(message.getqTime())%><a href="/delMessage?mId=<%=message.getmId()%>">删除</a></p>
+                        <p>标题:<%=message.getmTitle()%> &nbsp;发布时间：<%=format.format(message.getqTime())%><a
+                                href="/AdmindelMessage?mId=<%=message.getmId()%>">删除</a></p>
 
-                        提问内容：<p><%=message.getmQuestion()%></p>
+                        提问内容：<p><%=message.getmQuestion()%>
+                    </p>
+
                         <%
                             if (message.getaTime() != null) {
 
@@ -50,16 +55,15 @@
                         </p>
 
                         <%
-                        }else {
+                            }else {
 
                         %>
 
-                        <p><strong>等待管理员回复中</strong></p>
+                        <p><a href="/toUpdateMessage?mId=<%=message.getmId()%>">点此回复</a></p>
 
 
 
                         <%}%>
-
                         <hr/>
                         <br/>
                         <br/>

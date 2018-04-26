@@ -32,30 +32,33 @@
                         List<Message> messages = (List<Message>) request.getAttribute("messageList");
                         if (messages != null && messages.size() != 0) {
                             for (Message message : messages) {
-
-
-                                String aTime;
-                                String answer;
-                                String aName;
-                                if (message.getaTime() != null) {
-                                    aTime = format.format(message.getaTime());
-                                    answer = message.getmAnswer();
-                                    aName=message.getaUserName();
-                                } else {
-                                    answer = "未回复";
-                                    aTime = "未回复";
-                                    aName="未回复";
-                                }
-
-
                     %>
                     <tr>
 
                         <p>标题:<%=message.getmTitle()%> &nbsp;发布时间：<%=format.format(message.getqTime())%><a href="/delMessage?mId=<%=message.getmId()%>">删除</a></p>
 
                         提问内容：<p><%=message.getmQuestion()%></p>
-                       回复内容：<p><%=answer%></p>
-                        <p>回复人：<%=aName%>&nbsp;回复时间：<%=aTime%></p>
+                        <%
+                            if (message.getaTime() != null) {
+
+
+                        %>
+
+                        回复内容：<p><%=message.getmAnswer()%>
+                    </p>
+                        <p>回复人：<%=message.getaUserName()%>&nbsp;回复时间：<%=message.getaTime()%>
+                        </p>
+
+                        <%
+                        }else {
+
+                        %>
+
+                        <p><strong>等待管理员回复中</strong></p>
+
+
+
+                        <%}%>
 
                         <hr/>
                         <br/>

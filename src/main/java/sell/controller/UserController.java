@@ -87,13 +87,10 @@ public class UserController {
             session.setAttribute("User", bizResult.getDate());
             User resultDate = bizResult.getDate();
             if (resultDate.getPower().equals(UserEnum.ADMIN.getCode())) {
-                model.addAttribute("admin",resultDate);
-                return "admin";
-            } else if (resultDate.getPower().equals(UserEnum.USER.getCode())) {
-                return "redirect:/index";
+
+                return "redirect:/user/adminOrder";
             } else {
-                model.addAttribute("admin",resultDate);
-                return "admin";
+                return "redirect:/user/center";
             }
 
         } else {
@@ -105,6 +102,29 @@ public class UserController {
 
     }
 
+
+    /**
+     * 处理进入管理员中心请求
+     *
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/adminOrder ", method = RequestMethod.GET)
+    public String adminOrder(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("User");
+        if (user != null&&user.getPower().equals(UserEnum.ADMIN.getCode())) {
+
+            List<FightOrderVO> fightOrderVOs = orderService.getFightOrder();
+            model.addAttribute("admin",user);
+            model.addAttribute("fightOrderVO", fightOrderVOs);
+            return "admin";
+        }
+
+        return "redirect:/login";
+
+
+    }
 
     /**
      * 处理进入个人中心请求
@@ -123,6 +143,7 @@ public class UserController {
         List<FightOrderVO> fightOrderVOs = orderService.getFightOrder(user);
 
         model.addAttribute("fightOrderVO", fightOrderVOs);
+        model.addAttribute("admin",user);
         return "userAdmin";
     }
 
@@ -202,13 +223,13 @@ public class UserController {
      * 进入修改用户密码页面
      */
     @RequestMapping(value = "/userPwd", method = RequestMethod.GET)
-    public String modifyPwd(HttpSession session) {
+    public String modifyPwd(HttpSession session,Model model) {
 
         User user = (User) session.getAttribute("User");
         if (user == null) {
             return "/login";
         }
-
+        model.addAttribute("admin",user);
         return "userPwd";
     }
 

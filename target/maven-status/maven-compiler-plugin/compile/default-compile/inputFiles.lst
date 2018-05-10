@@ -20,6 +20,7 @@
 /Users/user12/Documents/git/spring/src/main/java/sell/service/IUserService.java
 /Users/user12/Documents/git/spring/src/main/java/sell/pojo/Message.java
 /Users/user12/Documents/git/spring/src/main/java/sell/pojo/FightInfo.java
+/Users/user12/Documents/git/spring/src/main/java/sell/pojo/Test.java
 /Users/user12/Documents/git/spring/src/main/java/sell/dao/Form/orderForm.java
 /Users/user12/Documents/git/spring/src/main/java/sell/dao/Enum/UserEnum.java
 /Users/user12/Documents/git/spring/src/main/java/sell/service/IMessageService.java
@@ -35,6 +36,7 @@
 /Users/user12/Documents/git/spring/src/main/java/sell/controller/UserController.java
 /Users/user12/Documents/git/spring/src/main/java/sell/dao/result/BizResult.java
 /Users/user12/Documents/git/spring/src/main/java/sell/service/impl/OrderService.java
+/Users/user12/Documents/git/spring/src/main/java/sell/dao/DO/TestMapper.java
 /Users/user12/Documents/git/spring/src/main/java/sell/service/impl/UserServiceImp.java
 /Users/user12/Documents/git/spring/src/main/java/sell/dao/VO/detatilVO.java
 /Users/user12/Documents/git/spring/src/main/java/sell/service/IOrderService.java

@@ -63,7 +63,7 @@
                     <td><%=fightInfoVO.getFightPay()%></td>
                     <td><%=fightInfoVO.getFightNum()%></td>
                     <td><%=fightInfoVO.getTicketType()%></td>
-                    <td><a href="/fight/delFight?id=<%=fightInfoVO.getFightId()%>">删除</a></td>
+                        <td><a onclick="deleteFight(<%=fightInfoVO.getFightId()%>)">删除</a></td>
                     </tr>
                     <%
                             }
@@ -78,7 +78,30 @@
 
         </div>
 
+        <script>
+            function deleteFight(id) {
+                $.ajax({
+                    url: "/fight/delFight?id=" + id,
+                    type: "get",
+                    success: function (data) {
+                        if (data == 1) {
+                            alert("删除成功")
+                            window.location.reload();
+                        }
 
+                        if (data == -2) {
+                            alert("请登录")
+                        }
+                        if (data == -1) {
+                            alert("删除失败，请重试");
+                        }
+
+                    }
+                });
+            }
+
+
+        </script>
     </div>
 </div>
 

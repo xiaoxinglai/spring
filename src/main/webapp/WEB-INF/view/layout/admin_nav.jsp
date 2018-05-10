@@ -12,7 +12,6 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 
-
         </div>
     </div>
 </nav>

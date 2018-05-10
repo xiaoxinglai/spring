@@ -1,4 +1,6 @@
+sell/service/IOrderService.class
 sell/pojo/OrderDetail.class
+sell/dao/DO/CompanyInfoMapper.class
 sell/dao/result/BizResult.class
 sell/service/impl/FightServiceImpl.class
 sell/pojo/User.class
@@ -7,7 +9,10 @@ sell/pojo/CompanyInfo.class
 sell/pojo/FightInfo.class
 sell/dao/Enum/SexEnum.class
 sell/dao/VO/OrderQueryVO.class
+sell/dao/DO/OrderDetailMapper.class
+sell/service/impl/OrderService.class
 sell/dao/Enum/ResultEnum.class
+sell/dao/DO/UserMapper.class
 sell/controller/OrderController.class
 sell/service/IFightService.class
 sell/dao/Enum/UserEnum.class
@@ -19,8 +24,10 @@ sell/dao/VO/RelationUser.class
 sell/dao/Form/UserForm.class
 sell/dao/Enum/ParamEnum.class
 sell/controller/UserController.class
+sell/dao/DO/FightInfoMapper.class
 sell/service/impl/UserServiceImp.class
 sell/pojo/RerationInfo.class
+sell/dao/DO/OrderMapper.class
 sell/dao/result/PageResult.class
 sell/controller/FightController.class
 sell/service/IMessageService.class
@@ -30,4 +37,9 @@ sell/pojo/Message.class
 sell/controller/PageSikpController.class
 sell/service/impl/MessageService.class
 sell/dao/VO/OrderVO.class
+sell/dao/DO/RerationInfoMapper.class
+sell/controller/CompanyController.class
 sell/dao/VO/FightInfoVO.class
+sell/pojo/Test.class
+sell/dao/Form/orderForm.class
+sell/dao/DO/TestMapper.class

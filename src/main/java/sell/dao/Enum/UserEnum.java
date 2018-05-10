@@ -5,7 +5,8 @@ package sell.dao.Enum;
  */
 public enum UserEnum {
     USER(1, "普通用户"),
-    ADMIN(2, "系统管理员");
+    ADMIN(2, "系统管理员"),
+    SURPER_ADMIN(3, "超级系统管理员");
     private Integer code;
     private String msg;
 

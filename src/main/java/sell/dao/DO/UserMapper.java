@@ -50,4 +50,6 @@ public interface UserMapper {
      */
     int updateByPrimaryKey(User record);
     List<User> selectAllByUIDS(List<Long> uIds);
+
+    List<User> selectAllByPower(Integer power);
 }

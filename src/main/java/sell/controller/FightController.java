@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sell.dao.DO.CompanyInfoMapper;
+import sell.dao.DO.FightInfoMapper;
 import sell.dao.VO.FightInfoVO;
 import sell.dao.result.BizResult;
 import sell.dao.result.PageResult;
@@ -27,6 +28,8 @@ public class FightController {
     private IFightService fightService;
     @Autowired
     private CompanyInfoMapper companyInfoMapper;
+    @Autowired
+    private FightInfoMapper fightInfoMapper;
 
 
     /**
@@ -98,6 +101,27 @@ public class FightController {
         model.addAttribute("admin",user);
 
         return "/addFight";
+    }
+
+
+    /**
+     * 删除航班息
+     */
+    @RequestMapping(value = "/delFight ", method = RequestMethod.GET)
+    @ResponseBody
+    public int delFight(@RequestParam("id") Long id, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("User");
+        if (user == null) {
+            return -2;
+        }
+        int result = fightInfoMapper.deleteByPrimaryKey(id);
+
+        if (result > 0) {
+            return 1;
+        } else {
+            return -1;
+        }
+
     }
 
 }

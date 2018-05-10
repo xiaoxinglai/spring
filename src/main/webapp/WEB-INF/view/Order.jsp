@@ -51,10 +51,16 @@
         <div id="person">
 
         </div>
+        选择支付方式：
+        <select>
+            <option>支付宝</option>
+            <option>网银</option>
+            <option>applePay</option>
+        </select>
         <div id="total"></div>
 
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">提交订单</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">确认支付</button>
     </form>
     </div>
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sell.dao.DO.RerationInfoMapper;
+import sell.dao.DO.UserMapper;
 import sell.dao.Enum.UserEnum;
 import sell.dao.Form.UserForm;
 import sell.dao.VO.FightOrderVO;
@@ -29,6 +30,8 @@ public class UserController {
     private IOrderService orderService;
     @Autowired
     private RerationInfoMapper rerationInfoMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * 处理注册请求
@@ -86,7 +89,7 @@ public class UserController {
         if (bizResult.getSuccess()) {
             session.setAttribute("User", bizResult.getDate());
             User resultDate = bizResult.getDate();
-            if (resultDate.getPower().equals(UserEnum.ADMIN.getCode())) {
+            if (resultDate.getPower().equals(UserEnum.ADMIN.getCode())||resultDate.getPower().equals(UserEnum.SURPER_ADMIN.getCode())) {
 
                 return "redirect:/user/adminOrder";
             } else {
@@ -100,6 +103,19 @@ public class UserController {
             return "/index";
         }
 
+    }
+
+
+    /**
+     * 处理注销登陆  loginOut
+     */
+    @RequestMapping(value = "/loginOut", method = RequestMethod.GET)
+    public String loginOut( HttpSession session,Model model) {
+
+
+            session.removeAttribute("User");
+
+            return "index";
     }
 
 
@@ -119,9 +135,14 @@ public class UserController {
             model.addAttribute("admin",user);
             model.addAttribute("fightOrderVO", fightOrderVOs);
             return "admin";
+        }else  if (user.getPower().equals(UserEnum.SURPER_ADMIN.getCode())){
+
+            return "redirect:/user/UserAdminList";
+
+        }else {
+            return "redirect:/login";
         }
 
-        return "redirect:/login";
 
 
     }
@@ -248,6 +269,75 @@ public class UserController {
         return "result";
 
     }
+
+
+    /**
+     *  跳转到管理管理员列表界面fightAdmin
+     */
+    @RequestMapping(value ="/UserAdminList",method = RequestMethod.GET)
+    public String UserAdminList(HttpSession session, Model model){
+        User user = (User) session.getAttribute("User");
+        if (user == null) {
+            return "redirect:login";
+        }
+        List<User> AdminUserList=userMapper.selectAllByPower(UserEnum.ADMIN.getCode());
+        model.addAttribute("AdminUserList",AdminUserList);
+        model.addAttribute("admin",user);
+        return "/UserAdminList";
+    }
+
+    /**
+     * 跳转到添加管理员界面
+     */
+    @RequestMapping(value ="/addUserAdmin",method = RequestMethod.GET)
+    public String addUserAdmin(HttpSession session, Model model){
+        User user = (User) session.getAttribute("User");
+        if (user == null) {
+            return "redirect:login";
+        }
+
+        model.addAttribute("admin",user);
+        return "/addUserAdmin";
+    }
+
+    /**
+     * 删除管理员的方法
+     */
+
+    @RequestMapping(value = "/delUser ", method = RequestMethod.GET)
+    @ResponseBody
+    public int delFight(@RequestParam("id") Long id, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("User");
+        if (user == null) {
+            return -2;
+        }
+        int result = userMapper.deleteByPrimaryKey(id);
+
+        if (result > 0) {
+            return 1;
+        } else {
+            return -1;
+        }
+
+    }
+    /**
+     * 增加管理员的方法
+     */
+    @RequestMapping(value ="/addUserAdminInfo",method = RequestMethod.POST)
+    public String addUserAdminInfo(User user, HttpSession session, Model model){
+        User userPower = (User) session.getAttribute("User");
+        if (userPower == null) {
+            return "redirect:login";
+        }
+        user.setPower(UserEnum.ADMIN.getCode());
+
+        userMapper.insert(user);
+        model.addAttribute("msg","添加成功");
+
+        return "/result";
+    }
+
+
 
 
 }

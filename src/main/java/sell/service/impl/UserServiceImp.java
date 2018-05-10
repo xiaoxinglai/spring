@@ -8,6 +8,7 @@ import sell.dao.DO.RerationInfoMapper;
 import sell.dao.DO.UserMapper;
 import sell.dao.Enum.ParamEnum;
 import sell.dao.Enum.ResultEnum;
+import sell.dao.Enum.UserEnum;
 import sell.dao.VO.RelationUser;
 import sell.dao.result.BizResult;
 import sell.pojo.RerationInfo;
@@ -66,6 +67,7 @@ public class UserServiceImp implements IUserService {
 
 
         if (result == null) {
+            user.setPower(UserEnum.USER.getCode());
             int i = userMapper.insert(user);
             if (i > 0) {
                 return BizResult.Create();

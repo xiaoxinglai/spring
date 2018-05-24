@@ -21,10 +21,22 @@
     <div class="row">
         <%@include file="layout/left_nav.jsp"%>
         <div class="col-md-10 main">
+            <form method="post" action="/adminOrder" >
 
-            <form method="post" action="/adminOrder">
-                请输入订单号： <input name="orderNo" type="text"/> <button type="submit">查询</button>
+                <div class="row">
+                    <div class="col-xs-2">
+                       <p style="font-size:large">请输入订单号：</p>
+                    </div>
+                    <div class="col-xs-6">
+                       <input class="form-control" name="orderNo" type="text"/>
+                    </div>
+                    <div class="col-xs-4">
+                        <button  class="btn btn-info" type="submit">查询</button>
+                    </div>
+
+                </div>
             </form>
+
 
 
             <h2 class="sub-header">查询结果</h2>

@@ -31,7 +31,7 @@
                 管理员账号：<input name="uNo"/><br>
                 管理员邮箱：<input name="email"/><br>
                 管理员电话：<input name="phone"/><br>
-                <button class="button" type="submit">提交</button>
+                <button class="btn btn-info" type="submit">提交</button>
             </form>
 
         </div>

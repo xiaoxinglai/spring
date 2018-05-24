@@ -4,7 +4,16 @@ import java.util.List;
 
 public class orderForm {
     private Long fightId;
+    private String statrDate;
     private List<Long> uId;
+
+    public String getStatrDate() {
+        return statrDate;
+    }
+
+    public void setStatrDate(String statrDate) {
+        this.statrDate = statrDate;
+    }
 
     public orderForm(Long fightId, List<Long> uId) {
         this.fightId = fightId;

@@ -1,11 +1,13 @@
 package sell.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import sell.dao.Enum.UserEnum;
 import sell.dao.Form.orderForm;
 import sell.dao.VO.FightInfoVO;
@@ -173,12 +175,13 @@ public class OrderController {
      * @return
      */
     @RequestMapping(value = "/dochangeOrder", method = RequestMethod.GET)
-    public String dochangeOrder(@RequestParam("fightId") Long fightId,@RequestParam("detailId") Long detailId, HttpSession session, Model model) {
+    @ResponseBody
+    public String dochangeOrder(@RequestParam("fightId") Long fightId, @RequestParam("detailId") Long detailId, @Param("date") String date, HttpSession session, Model model) {
         User user = (User) session.getAttribute("User");
         if (user == null) {
             return "redirect:login";
         }
-        BizResult bizResult=orderService.dochangeOrder(fightId,detailId,user.getuId());
+        BizResult bizResult=orderService.dochangeOrder(fightId,detailId,user.getuId(),date);
         if (bizResult.getSuccess()){
             if (user.getPower().equals(UserEnum.ADMIN.getCode())){
                 return "redirect:/user/adminOrder";

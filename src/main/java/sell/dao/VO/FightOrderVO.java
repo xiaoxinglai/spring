@@ -6,6 +6,15 @@ public class FightOrderVO {
 
     private String orderNo;
     private String fightNo;
+    private  String statrdate;
+
+    public String getStatrdate() {
+        return statrdate;
+    }
+
+    public void setStatrdate(String statrdate) {
+        this.statrdate = statrdate;
+    }
 
     private List<detatilVO> detatilVOS;
 

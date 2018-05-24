@@ -32,7 +32,7 @@
         <li> <a href="/user/loginOut">注销登陆</a></li>
     </ul>
     <%
-        }else {
+        }else if (admin != null&&admin.getPower().equals(3)){
 %>
     <ul class="nav nav-sidebar">
         <li class="active"><a href="/user/UserAdminList">管理员管理 <span class="sr-only">(current)</span></a></li>

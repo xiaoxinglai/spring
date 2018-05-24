@@ -38,7 +38,6 @@ public class OrderService implements IOrderService {
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
-    @Override
     public BizResult OrderTicket(orderForm orderForm, Long uid) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
@@ -50,6 +49,8 @@ public class OrderService implements IOrderService {
         Order order = new Order();
         order.setuId(uid);
         order.setOrderNo(orderNo);
+        order.setStatrdate(orderForm.getStatrDate());
+
         FightInfo fightInfo = fightInfoMapper.selectByPrimaryKey(orderForm.getFightId());
         Long fightNum = fightInfo.getFightNum();
         if (fightNum - orderForm.getuId().size() < 0) {
@@ -213,6 +214,7 @@ public class OrderService implements IOrderService {
             String fightNo = detatilVOList.get(0).getFightNo();
             fightOrderVO.setFightNo(fightNo);
             fightOrderVO.setOrderNo(order.getOrderNo());
+            fightOrderVO.setStatrdate(order.getStatrdate());
             fightOrderVO.setDetatilVOS(detatilVOList);
             fightOrderVOS.add(fightOrderVO);
         }
@@ -372,7 +374,7 @@ public class OrderService implements IOrderService {
      * @return
      */
     @Override
-    public BizResult dochangeOrder(Long fight, Long detailId, Long Uid) {
+    public BizResult dochangeOrder(Long fight, Long detailId, Long Uid,String date) {
 
         OrderDetail orderDetail = detailMapper.selectByPrimaryKey(detailId);
 
@@ -384,6 +386,7 @@ public class OrderService implements IOrderService {
             List<Long> uids = new ArrayList<>();
             uids.add(orderDetail.getuId());
             orderForm.setuId(uids);
+            orderForm.setStatrDate(date);
 
 
             //退票成功后买新票

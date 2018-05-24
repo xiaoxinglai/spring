@@ -22,5 +22,5 @@ public interface IOrderService {
      List<FightInfoVO> queryFightInfo(String Departure, String Destination, Long CompanyId);
      List<FightInfoVO> changeTicket(Long detailId);
 
-     BizResult dochangeOrder(Long fight,Long detailId,Long UID);
+     BizResult dochangeOrder(Long fight,Long detailId,Long UID,String date);
 }

@@ -178,7 +178,7 @@ public class UserController {
         if (user == null) {
             return "redirect:/login";
         }
-
+        model.addAttribute("admin",user);
 
         List<RelationUser> relationUsers = userService.getRelation(user.getuId());
         model.addAttribute("relationUsers", relationUsers);
@@ -215,6 +215,7 @@ public class UserController {
     @ResponseBody
     public int addRelation(@RequestParam("name") String name, @RequestParam("Identity") String Identity, HttpSession session, Model model) {
         User user = (User) session.getAttribute("User");
+        model.addAttribute("admin",user);
         if (user == null) {
             return -2;
         }
@@ -266,6 +267,7 @@ public class UserController {
 
         BizResult bizResult = userService.userChangePwd(user, pwd, newPwd, newRePwd);
         model.addAttribute("msg",bizResult.getMsg());
+
         return "result";
 
     }
@@ -333,6 +335,7 @@ public class UserController {
 
         userMapper.insert(user);
         model.addAttribute("msg","添加成功");
+        model.addAttribute("admin",user);
 
         return "/result";
     }

@@ -28,12 +28,12 @@ public class MessageController {
      * 进入发布留言列表
      */
     @RequestMapping(value = "/toAddMessage",method = RequestMethod.GET)
-    public String toAddMessage(HttpSession session){
+    public String toAddMessage(HttpSession session,Model model){
         User user = (User) session.getAttribute("User");
         if (user == null) {
             return "redirect:login";
         }
-
+        model.addAttribute("admin",user);
         return "AddMessage";
     }
 
@@ -49,6 +49,7 @@ public class MessageController {
         }
         BizResult bizResult=messageService.insertMessage(title,question,user);
         model.addAttribute("msg",bizResult.getMsg());
+        model.addAttribute("admin",user);
         return "result";
     }
 
@@ -61,7 +62,7 @@ public class MessageController {
         if (user == null) {
             return "redirect:login";
         }
-
+        model.addAttribute("admin",user);
        List<Message> messageList= messageMapper.selectAllByUID(user.getuId());
         model.addAttribute("messageList",messageList);
         return "userAdminMessage";

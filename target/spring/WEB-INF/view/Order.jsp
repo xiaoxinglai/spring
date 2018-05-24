@@ -27,6 +27,13 @@
         <h2 class="form-signin-heading">机票预定</h2>
         <input type="hidden" value="<%=orderVO.getFightId()%>" name="fightId"/>
         <p>预定航班号：<%=orderVO.getFightNo()%><p/>
+        <p>选择出发日期:<input id="statrDate" name="statrDate"/></p>
+        <script>
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#statrDate' //指定元素
+            });
+        </script>
         <p>飞机票价格：<span id="cost"><%=orderVO.getFightPay()%></span></p>
         <p>订票人姓名：<%=orderVO.getUser().getUserName()%></p>
         <p>订票人性别：<%=orderVO.getSex()%></p>

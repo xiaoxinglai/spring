@@ -22,7 +22,7 @@
 
         <div class="col-lg-10 col-lg-offset-1">
             <h2 class="text-center form-signin-heading">改签结果列表</h2>
-            <p class="text-center"><input id="date"/></p>
+            <p class="text-center">出发时间:<input id="date"/></p>
             <script>
                 //执行一个laydate实例
                 laydate.render({
@@ -66,7 +66,7 @@
                 <%=fightInfo.getDestinationTime()%>
                 航空公司:<%=fightInfo.getFightCompany()%>
                 票价<%=fightInfo.getFightPay()%>
-                <button class="btn btn-info" onclick="changeTicket(<%=fightInfo.getFightId()%>,<%=detailId%>)">改签
+                    <button class="btn btn-info" onclick="changeTicket(<%=fightInfo.getFightId()%>,<%=detailId%>)">改签
                 </button>
             </p>
 

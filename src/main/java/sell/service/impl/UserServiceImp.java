@@ -116,6 +116,7 @@ public class UserServiceImp implements IUserService {
             return BizResult.Create(ParamEnum.NO_USER.getCode(), ParamEnum.NO_USER.getMsg());
         }
 
+
         if (result.getPassword().equals(user.getPassword())) {
 
             return BizResult.Create(result);

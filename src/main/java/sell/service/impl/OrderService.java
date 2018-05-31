@@ -32,10 +32,10 @@ public class OrderService implements IOrderService {
 
 
     /***
-     * 处理下单
-     * @param orderForm
-     * @param uid
-     * @return
+     *      * 处理下单
+     *      * @param orderForm
+     *      * @param uid
+     *      * @return
      */
     @Transactional(rollbackFor = Exception.class)
     public BizResult OrderTicket(orderForm orderForm, Long uid) {
@@ -380,6 +380,7 @@ public class OrderService implements IOrderService {
 
         //先退票
         BizResult bizResult = refundTickt(detailId);
+
         if (bizResult.getSuccess()) {
             orderForm orderForm = new orderForm();
             orderForm.setFightId(fight);

@@ -43,7 +43,7 @@ public class CompanyController {
      */
     @RequestMapping(value = "/Company/delCompany ", method = RequestMethod.GET)
     @ResponseBody
-    public int DelRelation(@RequestParam("CompanyId") Long CompanyId, HttpSession session, Model model) {
+    public int DelRelation(@RequestParam("CompanyId") Long CompanyId, HttpSession session) {
         User user = (User) session.getAttribute("User");
         if (user == null) {
             return -2;

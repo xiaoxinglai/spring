@@ -89,7 +89,7 @@ public class UserController {
         if (bizResult.getSuccess()) {
             session.setAttribute("User", bizResult.getDate());
             User resultDate = bizResult.getDate();
-            if (resultDate.getPower().equals(UserEnum.ADMIN.getCode())||resultDate.getPower().equals(UserEnum.SURPER_ADMIN.getCode())) {
+            if (resultDate.getPower().equals(UserEnum.ADMIN.getCode())||resultDate.getPower().equals(UserEnum.SURPER_ADMIN.getCode())) {//判断权限
 
                 return "redirect:/user/adminOrder";
             } else {
